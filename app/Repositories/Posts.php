@@ -2,20 +2,13 @@
 
 namespace App\Repositories;
 
-use GuzzleHttp\Client;
 
-class Posts{
+use App\Repositories\GuzzleHttpRequest;
+
+class Posts extends GuzzleHttpRequest{
 
 
-    public function __construct()
-    {
 
-        $this->client = new Client([
-
-            'base_uri' => 'https://jsonplaceholder.typicode.com',
-            'timeout'  => 2.0,
-        ]);
-    }
 
     public function all(){
 
@@ -28,9 +21,5 @@ class Posts{
 
     }
 
-    public function get($url){
 
-        $response = $this->client->request('GET', $url);
-        return  json_decode($response->getBody()->getContents());
-    }
 }
