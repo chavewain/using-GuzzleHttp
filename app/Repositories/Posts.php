@@ -19,15 +19,18 @@ class Posts{
 
     public function all(){
 
-        $response = $this->client->request('GET', 'posts');
-
-        return  json_decode($response->getBody()->getContents());
+        return $this->get('posts');
     }
 
     public function find($id){
 
-        $response = $this->client->request('GET', "posts/{$id}");
+        return $this->get("posts/{$id}");
 
+    }
+
+    public function get($url){
+
+        $response = $this->client->request('GET', $url);
         return  json_decode($response->getBody()->getContents());
     }
 }
